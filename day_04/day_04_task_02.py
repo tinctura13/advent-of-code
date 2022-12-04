@@ -10,20 +10,18 @@ def read_data(file_path: str) -> List[str]:
     return data
 
 
-def get_clean_pair(raw_pair: str) -> Tuple:
+def get_clean_pair(raw_pair: str) -> Tuple[List[int], List[int]]:
     clean_pair = [_.split("-") for _ in raw_pair.strip().split(",")]
     return [int(_) for _ in clean_pair[0]], [int(_) for _ in clean_pair[1]]
 
 
 def count_full_pairs(all_pairs: List[str]) -> int:
-    counter = 0
+    counter: int = 0
     for pair in all_pairs:
         l, r = get_clean_pair(pair)
-        if l[0] <= r[0] and l[1] >= r[1] or l[0] >= r[0] and l[1] <= r[1]:
+        if l[1] >= r[0] and l[0] <= r[1]:
             counter += 1
-        elif l[0] <= r[0] and l[1] >= r[0] and l[1] <= r[1]:
-            counter += 1
-        elif l[0] >= r[0] and l[1] >= r[0] and l[1] >= r[1] and l[0] <= r[1]:
+        elif l[0] <= r[1] and l[1] >= r[0]:
             counter += 1
     return counter
 
