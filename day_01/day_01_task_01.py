@@ -1,21 +1,21 @@
-from typing import List, TextIO
+from typing import List
 
 INPUT = "day_01_input.txt"
 
 
-def read_data(file: TextIO) -> List:
+def read_data(file_path: str) -> List[str]:
     """Read the data from file"""
     data = []
-    with open(file, 'r') as fin:
+    with open(file_path, 'r') as fin:
         data = fin.readlines()
     return data
 
 
-def get_list_of_elves(data: List) -> List:
+def get_list_of_elves(data: List[str]) -> List[List[str]]:
     return [_.split("\n") for _ in "".join(data).strip().split("\n\n")]
 
 
-def get_total_for_each_elve(arr: List) -> List:
+def get_total_for_each_elve(arr: List[List[str]]) -> List[int]:
     return [sum([int(item) for item in _]) for _ in arr]
 
 
