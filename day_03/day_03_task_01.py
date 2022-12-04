@@ -7,7 +7,6 @@ cook_book = lower | upper
 
 def read_data(file):
     """Read the data from file"""
-    data = []
     with open(file, 'r') as fin:
         data = fin.readlines()
     return [_.strip() for _ in data]

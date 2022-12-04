@@ -19,7 +19,6 @@ scores = {
 
 def read_data(file):
     """Read the data from file"""
-    data = []
     result = []
     with open(file, 'r') as fin:
         data = fin.readlines()
