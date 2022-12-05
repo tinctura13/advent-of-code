@@ -10,7 +10,7 @@ def read_data(file_path: str) -> List[str]:
     return data
 
 
-def get_stack_of_crates(data: List[str]) -> List[List[str]]:
+def get_list_of_crates(data: List[str]) -> List[List[str]]:
     result = []
     n = 4  # chunk length
     for line in data[:8]:
