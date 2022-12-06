@@ -42,14 +42,14 @@ if __name__ == "__main__":
     data = read_data(INPUT)
 
     # get crates
-    crates = get_stack_of_crates(data[:9])
+    crates = get_list_of_crates(data[:9])
 
-    # get items
-    items = data[10:]
+    # get commands
+    commands = data[10:]
 
     # rearragne crates
-    for item in items:
-        crates = make_action(item, crates)
+    for command in commands:
+        crates = make_action(command, crates)
 
     # for item in crates:
     #     print(item)

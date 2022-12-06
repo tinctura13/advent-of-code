@@ -22,10 +22,10 @@ def get_list_of_crates(data: List[str]) -> List[List[str]]:
 def make_action(command: str, crates: List[List[str]]) -> List[List[str]]:
     task = command.split()
     amount, from_, to = int(task[1]), int(task[3]), int(task[5])
-    while amount > 0:
-        item = crates[from_ - 1].pop()
-        crates[to - 1].append(item)
-        amount -= 1
+    n = len(crates[from_ - 1]) - amount
+    to_take = crates[from_ - 1][n:]
+    crates[to - 1] += to_take[::-1]
+    crates[from_ - 1] = crates[from_ - 1][:n]
     return crates
 
 
@@ -37,13 +37,13 @@ if __name__ == "__main__":
     data = read_data(INPUT)
 
     # get crates
-    crates = get_stack_of_crates(data[:9])
+    crates = get_list_of_crates(data[:9])
 
-    # get items
-    items = data[10:]
+    # get commands
+    commands = data[10:]
 
     # rearragne crates
-    for item in items:
-        crates = make_action(item, crates)
+    for command in commands:
+        crates = make_action(command, crates)
 
     print(get_top_crates(crates))
