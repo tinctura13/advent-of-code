@@ -10,19 +10,11 @@ def read_data(file_path: str) -> List[str]:
     return data
 
 
-def signal_decoder(input: str) -> int:
-    result: List = []
-    counter: int = 0
-    mark_len = 4
-    for character in input.strip():
-        result.append(character)
-        if len(result) == mark_len and len(set(result)) == mark_len:
-            print(f'start-of-packet marker is: {"".join(result)}')
-            return counter
-        elif len(result) == mark_len:
-            result = result[3:]
-        counter += 1
-    return counter
+def signal_decoder(input: str, window: int = 4) -> int:
+    for i in range(len(input) - window + 1):
+        chunk = input[i: i + window]
+        if len(set(chunk)) == window:
+            return i + window
 
 
 if __name__ == "__main__":
