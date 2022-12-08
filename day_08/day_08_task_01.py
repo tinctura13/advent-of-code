@@ -1,7 +1,6 @@
 from typing import List
 
-# INPUT = "day_08_input.txt"
-INPUT = "sample_input.txt"
+INPUT = "day_08_input.txt"
 
 
 def read_data(file_path: str) -> List[List[int]]:
@@ -47,8 +46,6 @@ def get_inner_visible_trees(data: List) -> int:
 
 if __name__ == "__main__":
     data = read_data(INPUT)
-    # for line in data:
-    #     print(line)
     visible_trees = get_inner_visible_trees(data)
     result = len(data) * 2 + len(data[0][2:]) * 2
     print(result + visible_trees)
