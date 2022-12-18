@@ -20,6 +20,7 @@ def split_rucksack(rucksack):
 
 
 def find_common_items(l, r):
+    # Кажется, что `iter` не нужен, потому что `set` уже `iterable`
     return next(iter(l.intersection(r)))
 
 
