@@ -5,6 +5,13 @@ INPUT = "day_02_input.txt"
 # X for Rock, Y for Paper, and Z for Scissors
 # 1 for Rock, 2 for Paper, and 3 for Scissors
 scores = {
+    # Это конечно так работает, но это неправильно в качестве ключа использовать
+    # строковое представление списка или любой другой фигни,
+    # вместо этого можно было использовать tuple:
+    # ("A", "X"), ("A", "Y") и т.п.
+    # Строковые представления нужны только для целей отладки/отображения,
+    # на них нельзя строить логику, потому что они могут меняться в зависимости от версии
+    # или ещё чего
     "['A', 'X']": 4,  # draw 3 + 1 = 4
     "['A', 'Y']": 8,  # won  6 + 2 = 8
     "['A', 'Z']": 3,  # lost 0 + 3 = 3
@@ -23,6 +30,7 @@ def read_data(file):
     with open(file, 'r') as fin:
         data = fin.readlines()
     for item in data:
+        # Тут надо обернуть `item.strip().split()` в `tuple`
         result.append(item.strip().split())
     return result
 
@@ -30,6 +38,7 @@ def read_data(file):
 def calculate_points(data):
     points = 0
     for item in data:
+        # `str` тут надо убрать, а в data уже должны быть таплы
         points += scores[str(item)]
     return points
 
